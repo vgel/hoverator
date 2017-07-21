@@ -229,7 +229,7 @@ class Game {
 }
 
 const startGame = (boxMode) => {
-  planck.testbed('DroneGame', (testbed) => {
+  planck.testbed('Hoverator', (testbed) => {
     document.getElementById('menu').style.display = 'none';
     document.getElementById('status').style.display = 'block';
     window.testbed = testbed;
