@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Drone Game</title>
+  <style type="text/css">
+    body {
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      background: rgb(34, 34, 34);
+      color: white;
+      font-family: monospace;
+      opacity: 0.75;
+    }
+
+    #stage {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .overlay {
+      position: fixed;
+      width: 100vw;
+      z-index: 99;
+    }
+
+    #status {
+      display: none;
+      top: 25vh;
+      height: 25vh;
+      font-size: 25vh;
+      line-height: 25vh;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    #status > span {
+      display: block;
+      min-height: 25vh;
+    }
+
+    #status > small {
+      display: block;
+      font-size: 10vh;
+    }
+
+    #menu {
+      top: 0;
+    }
+
+    #menu > h1 {
+      display: block;
+      width: 100vw;
+      text-align: center;
+      font-size: 5em;
+      margin-bottom: 0;
+      margin-top: 50px;
+    }
+
+    #howto {
+      text-align: justify;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    #menu-buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+
+    #menu-buttons > a {
+      border: 1px solid white;
+      font-size: 36px;
+      padding: 15px;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    #menu-buttons > a:hover {
+      background: #777777;
+    }
+
+    #howto {
+      padding: 25px;
+      font-size: 16px;
+    }
+  </style>
+</head><body>
+
+<canvas id="stage"></canvas>
+<div id="status" class="overlay">
+  <span>
+  </span>
+  <small></small>
+</div>
+
+<div id="menu" class="overlay">
+  <h1>Hoverator</h1>
+  <div id="howto">
+   <p>The left and right arrow keys control the engines on each side of the hovercraft.</p>
+   <p>Hover by holding the left and right arrow keys together. </p>
+   <p>To turn in a direction, briefly release the other key (e.g., to lean right, briefly take your finger off the left arrow key).</p>
+   <p>Hard mode adds a box that you have to carry to the end without dropping.</p>
+   <p>Press the down arrow to restart if you're stuck. Good luck!</p>
+  </div>
+  <div id="menu-buttons">
+    <a id="nrm">Normal</a>
+    <a id="hrd">Hard</a>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/planck-js/0.1.34/planck-with-testbed.js"></script>
+<script src="./bundle.js"></script>
+</body></html>
