@@ -9,6 +9,16 @@ const increasingRand = (progress, scale = 0.8) => {
 
 const clamp = (v, mn, mx) => Math.max(mn, Math.min(mx, v));
 
+const _padZ = (s, z = 2) => {
+  s = s.toString();
+  if (s.length >= z) return s;
+  return ('000' + s).slice(-z);
+}
+const msToStr = (ms) => {
+  ms = Math.ceil(ms);
+  return _padZ(Math.floor(ms / 60000)) + ':' + _padZ(Math.floor((ms / 1000) % 60)) + '.' + _padZ(ms % 1000, 3);
+}
+
 const makeWalls = (world, bodyX, bodyY, points) => {
   let body = world.createBody(Vec2(bodyX, bodyY)),
       wallDef = {density: 0, restitution: 0.4};
@@ -169,6 +179,7 @@ class Game {
   }
 
   reset () {
+    this.gameTime = 0;
     this.loseTimer = -3000;
     this.gameOver = false;
     this.status.clear();
@@ -208,6 +219,8 @@ class Game {
     if (this.gameOver)
       return;
 
+    this.gameTime += dt;
+
     if (this.drone.isLosing() || (this.box && this.box.isLosing())) {
       if (this.loseTimer >= this.loseTimerMax - 1) {
         this.status.setText(':( (' + this.getScore() + 'm)', 'Press ↓ to restart');
@@ -219,7 +232,7 @@ class Game {
     } else {
       this.loseTimer = -1000;
       if (this.getScore() >= this.width - 20) {
-        this.status.setText('You win!', this.getScore() + 'm');
+        this.status.setText('You win!', msToStr(this.gameTime));
         this.gameOver = true;
       } else {
         this.status.setText('', this.getScore() + 'm');
